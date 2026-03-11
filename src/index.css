@@ -1,0 +1,103 @@
+@import "tailwindcss";
+
+/* ── Local Font: Soria ─────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Soria";
+  src: url("./assets/Soria_Free_Font/Soria font.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Design Tokens ──────────────────────────────────────────────────────────── */
+:root {
+  /* Font */
+  --font-soria: "Soria", serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Core colors */
+  --clr-void:     #03030f;   /* near-black, slight indigo tint  */
+  --clr-deep:     #080820;   /* deep space navy                 */
+  --clr-abyss:    #0e0728;   /* dark violet base                */
+  --clr-surface:  #12123a;   /* slight purple surface           */
+
+  /* Accent / glow colors */
+  --clr-cyan:     #00d4ff;   /* electric cyan — AI signal       */
+  --clr-violet:   #7c3aed;   /* rich violet                     */
+  --clr-indigo:   #6366f1;   /* bright indigo                   */
+  --clr-sky:      #38bdf8;   /* sky blue mid-tone               */
+  --clr-pink:     #e879f9;   /* neon magenta — contrast pop     */
+  --clr-teal:     #2dd4bf;   /* teal for variety                */
+
+  /* Text */
+  --clr-text:        #e2e8f0;
+  --clr-text-muted:  #94a3b8;
+  --clr-text-accent: #00d4ff;
+}
+
+/* ── Reset ──────────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────────── */
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  font-family: var(--font-sans);
+  color: var(--clr-text);
+  overflow-x: hidden;
+
+  /* ════════════════════════════════════════════════════════
+     AI BACKGROUND — Multi-layer gradient composition
+     Layer order (top → bottom):
+       1. Radial glow — top-left  (violet/purple)
+       2. Radial glow — top-right (cyan/electric)
+       3. Radial glow — bottom    (teal/blue)
+       4. Radial glow — centre    (deep indigo, subtle)
+       5. Linear base             (void → deep → abyss)
+     ════════════════════════════════════════════════════════ */
+  background-color: var(--clr-void);
+  background-image:
+    radial-gradient(
+      ellipse 70% 60% at 15% 10%,
+      rgba(124, 58, 237, 0.28) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      ellipse 55% 55% at 90% 5%,
+      rgba(0, 212, 255, 0.22) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 65% 50% at 85% 95%,
+      rgba(45, 212, 191, 0.16) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 80% 40% at 50% 55%,
+      rgba(99, 102, 241, 0.08) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      158deg,
+      #03030f  0%,
+      #080820  22%,
+      #0e0728  48%,
+      #060c22  72%,
+      #03030f  100%
+    );
+  background-attachment: fixed;
+}
+
+/* Root app container */
+#root {
+  min-height: 100dvh;
+  isolation: isolate;
+}
