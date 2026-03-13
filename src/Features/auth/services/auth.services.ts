@@ -9,7 +9,7 @@ import type {
   UserProfile,
 } from "../types/auth.types";
 
-const BASE_URL = import.meta.env.BACKEND_URL;
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const register = async (
   payload: RegisterRequest,
@@ -28,6 +28,7 @@ export const login = async (
   const { data } = await axios.post<ApiResponse<AuthResponse>>(
     `${BASE_URL}/login`,
     payload,
+    { withCredentials: true },
   );
   return data;
 };
@@ -38,7 +39,10 @@ export const logout = async (
   const { data } = await axios.post<ApiResponse<null>>(
     `${BASE_URL}/logout`,
     { refreshToken },
-    { headers: { Authorization: `Bearer ${accessToken}` } },
+    {
+      headers: { Authorization: `Bearer ${accessToken}` },
+      withCredentials: true,
+    },
   );
   return data;
 };

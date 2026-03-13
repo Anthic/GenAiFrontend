@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
+import { useAuth } from "../Hooks/useAuth";
 
 /* ── Inline animated AI illustration (replaces Lottie — zero dependencies) ── */
 function AiIllustration() {
@@ -33,23 +34,87 @@ function AiIllustration() {
       </defs>
 
       {/* Bg glow blobs */}
-      <ellipse cx="200" cy="200" rx="140" ry="140" fill="url(#glow1)" filter="url(#blur1)" className="svg-pulse" />
-      <ellipse cx="200" cy="200" rx="90" ry="90" fill="url(#glow2)" filter="url(#blur1)" className="svg-pulse-alt" />
+      <ellipse
+        cx="200"
+        cy="200"
+        rx="140"
+        ry="140"
+        fill="url(#glow1)"
+        filter="url(#blur1)"
+        className="svg-pulse"
+      />
+      <ellipse
+        cx="200"
+        cy="200"
+        rx="90"
+        ry="90"
+        fill="url(#glow2)"
+        filter="url(#blur1)"
+        className="svg-pulse-alt"
+      />
 
       {/* Outer orbit ring */}
-      <circle cx="200" cy="200" r="155" fill="none" stroke="rgba(0,212,255,0.12)" strokeWidth="1" />
-      <circle cx="200" cy="200" r="155" fill="none" stroke="url(#ring1)" strokeWidth="1.5"
-        strokeDasharray="50 920" strokeLinecap="round" className="svg-orbit-1" />
+      <circle
+        cx="200"
+        cy="200"
+        r="155"
+        fill="none"
+        stroke="rgba(0,212,255,0.12)"
+        strokeWidth="1"
+      />
+      <circle
+        cx="200"
+        cy="200"
+        r="155"
+        fill="none"
+        stroke="url(#ring1)"
+        strokeWidth="1.5"
+        strokeDasharray="50 920"
+        strokeLinecap="round"
+        className="svg-orbit-1"
+      />
 
       {/* Middle orbit ring */}
-      <circle cx="200" cy="200" r="120" fill="none" stroke="rgba(124,58,237,0.15)" strokeWidth="1" />
-      <circle cx="200" cy="200" r="120" fill="none" stroke="url(#ring2)" strokeWidth="1.5"
-        strokeDasharray="35 720" strokeLinecap="round" className="svg-orbit-2" />
+      <circle
+        cx="200"
+        cy="200"
+        r="120"
+        fill="none"
+        stroke="rgba(124,58,237,0.15)"
+        strokeWidth="1"
+      />
+      <circle
+        cx="200"
+        cy="200"
+        r="120"
+        fill="none"
+        stroke="url(#ring2)"
+        strokeWidth="1.5"
+        strokeDasharray="35 720"
+        strokeLinecap="round"
+        className="svg-orbit-2"
+      />
 
       {/* Inner orbit ring */}
-      <circle cx="200" cy="200" r="85" fill="none" stroke="rgba(232,121,249,0.12)" strokeWidth="1" />
-      <circle cx="200" cy="200" r="85" fill="none" stroke="#e879f9" strokeWidth="1"
-        strokeDasharray="20 515" strokeLinecap="round" className="svg-orbit-3" />
+      <circle
+        cx="200"
+        cy="200"
+        r="85"
+        fill="none"
+        stroke="rgba(232,121,249,0.12)"
+        strokeWidth="1"
+      />
+      <circle
+        cx="200"
+        cy="200"
+        r="85"
+        fill="none"
+        stroke="#e879f9"
+        strokeWidth="1"
+        strokeDasharray="20 515"
+        strokeLinecap="round"
+        className="svg-orbit-3"
+      />
 
       {/* Core hexagon */}
       <polygon
@@ -68,8 +133,29 @@ function AiIllustration() {
       />
 
       {/* Center AI text */}
-      <text x="200" y="193" textAnchor="middle" fill="#00d4ff" fontSize="13" fontWeight="700" fontFamily="monospace" letterSpacing="2">AI</text>
-      <text x="200" y="212" textAnchor="middle" fill="rgba(255,255,255,0.5)" fontSize="8" fontFamily="monospace" letterSpacing="1">SECURE</text>
+      <text
+        x="200"
+        y="193"
+        textAnchor="middle"
+        fill="#00d4ff"
+        fontSize="13"
+        fontWeight="700"
+        fontFamily="monospace"
+        letterSpacing="2"
+      >
+        AI
+      </text>
+      <text
+        x="200"
+        y="212"
+        textAnchor="middle"
+        fill="rgba(255,255,255,0.5)"
+        fontSize="8"
+        fontFamily="monospace"
+        letterSpacing="1"
+      >
+        SECURE
+      </text>
 
       {/* Orbit dot — outer */}
       <circle r="5" fill="#00d4ff" className="svg-dot-outer">
@@ -77,7 +163,11 @@ function AiIllustration() {
           <mpath href="#outer-path" />
         </animateMotion>
       </circle>
-      <path id="outer-path" d="M 355,200 A 155,155 0 1,1 354.9,200" fill="none" />
+      <path
+        id="outer-path"
+        d="M 355,200 A 155,155 0 1,1 354.9,200"
+        fill="none"
+      />
 
       {/* Orbit dot — middle */}
       <circle r="4" fill="#e879f9" className="svg-dot-mid">
@@ -97,16 +187,39 @@ function AiIllustration() {
 
       {/* Corner data nodes */}
       {[
-        { x: 80,  y: 100, label: "Auth" },
+        { x: 80, y: 100, label: "Auth" },
         { x: 320, y: 100, label: "API" },
-        { x: 60,  y: 300, label: "LLM" },
+        { x: 60, y: 300, label: "LLM" },
         { x: 340, y: 300, label: "ML" },
       ].map(({ x, y, label }) => (
         <g key={label} className="svg-node">
-          <circle cx={x} cy={y} r="18" fill="rgba(0,212,255,0.07)" stroke="rgba(0,212,255,0.25)" strokeWidth="1" />
-          <text x={x} y={y + 4} textAnchor="middle" fill="rgba(0,212,255,0.8)" fontSize="9" fontFamily="monospace">{label}</text>
-          <line x1={x + (x < 200 ? 18 : -18)} y1={y} x2={200 + (x < 200 ? -60 : 60)} y2={200 + (y < 200 ? -30 : 30)}
-            stroke="rgba(0,212,255,0.12)" strokeWidth="0.8" strokeDasharray="4 4" />
+          <circle
+            cx={x}
+            cy={y}
+            r="18"
+            fill="rgba(0,212,255,0.07)"
+            stroke="rgba(0,212,255,0.25)"
+            strokeWidth="1"
+          />
+          <text
+            x={x}
+            y={y + 4}
+            textAnchor="middle"
+            fill="rgba(0,212,255,0.8)"
+            fontSize="9"
+            fontFamily="monospace"
+          >
+            {label}
+          </text>
+          <line
+            x1={x + (x < 200 ? 18 : -18)}
+            y1={y}
+            x2={200 + (x < 200 ? -60 : 60)}
+            y2={200 + (y < 200 ? -30 : 30)}
+            stroke="rgba(0,212,255,0.12)"
+            strokeWidth="0.8"
+            strokeDasharray="4 4"
+          />
         </g>
       ))}
     </svg>
@@ -116,12 +229,18 @@ function AiIllustration() {
 export default function Login() {
   const [showPass, setShowPass] = useState(false);
   const [form, setForm] = useState({ email: "", password: "" });
-  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { handleLogin, isLoading } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => setLoading(false), 2000);
+    try {
+      await handleLogin(form);
+
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (
@@ -154,15 +273,22 @@ export default function Login() {
         </div>
 
         <h2 className="left-heading">
-          Unlock the power of<br />
+          Unlock the power of
+          <br />
           <span>Artificial Intelligence</span>
         </h2>
         <p className="left-sub">Your AI-powered workspace, reimagined.</p>
 
         <ul className="feature-list">
-          <li><span className="feat-dot" /> Real-time AI conversations</li>
-          <li><span className="feat-dot" /> Secure end-to-end encryption</li>
-          <li><span className="feat-dot" /> Smart workflow automation</li>
+          <li>
+            <span className="feat-dot" /> Real-time AI conversations
+          </li>
+          <li>
+            <span className="feat-dot" /> Secure end-to-end encryption
+          </li>
+          <li>
+            <span className="feat-dot" /> Smart workflow automation
+          </li>
         </ul>
       </aside>
 
@@ -171,7 +297,6 @@ export default function Login() {
       ══════════════════════════════════════ */}
       <main className="login-right">
         <div className="glass-card">
-
           {/* Mobile-only brand */}
           <div className="mobile-brand">
             <div className="brand-icon">✦</div>
@@ -194,10 +319,11 @@ export default function Login() {
 
           {/* Form */}
           <form className="login-form" onSubmit={handleSubmit} noValidate>
-
             {/* Email */}
             <div className="field-group">
-              <label className="field-label" htmlFor="email">Email address</label>
+              <label className="field-label" htmlFor="email">
+                Email address
+              </label>
               <div className="input-wrap">
                 <span className="input-icon">✉</span>
                 <input
@@ -215,7 +341,9 @@ export default function Login() {
 
             {/* Password */}
             <div className="field-group">
-              <label className="field-label" htmlFor="password">Password</label>
+              <label className="field-label" htmlFor="password">
+                Password
+              </label>
               <div className="input-wrap">
                 <span className="input-icon">🔒</span>
                 <input
@@ -225,7 +353,9 @@ export default function Login() {
                   placeholder="••••••••••"
                   autoComplete="current-password"
                   value={form.password}
-                  onChange={(e) => setForm({ ...form, password: e.target.value })}
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
                   required
                 />
                 <button
@@ -245,7 +375,9 @@ export default function Login() {
                 <input type="checkbox" id="remember" />
                 Remember me
               </label>
-              <a href="#" className="forgot-link">Forgot password?</a>
+              <a href="#" className="forgot-link">
+                Forgot password?
+              </a>
             </div>
 
             {/* Submit */}
@@ -253,11 +385,10 @@ export default function Login() {
               type="submit"
               id="login-submit-btn"
               className="btn-submit"
-              disabled={loading}
+              disabled={isLoading}
             >
-              {loading ? "Signing in…" : "Sign In →"}
+              {isLoading ? "Signing in…" : "Sign In →"}
             </button>
-
           </form>
 
           <div className="or-divider">or continue with</div>
