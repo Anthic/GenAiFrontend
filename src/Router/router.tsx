@@ -16,7 +16,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // Standalone pages (no MainLayout wrapper)
+ 
   {
     path: "/login",
     element: <Login />,
