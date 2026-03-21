@@ -307,11 +307,7 @@ export default function Register() {
 
       <main className="reg-left">
         <div className="glass-card">
-          {/* Mobile-only brand */}
-          <div className="mobile-brand">
-            <div className="brand-icon">✦</div>
-            <span className="brand-name">GenAI Studio</span>
-          </div>
+          {/* Mobile-only brand removed */}
 
           <div className="card-badge">
             <span className="badge-dot" />
@@ -433,10 +429,7 @@ export default function Register() {
           RIGHT PANEL — Illustration & Branding
       ══════════════════════════════════════ */}
       <aside className="reg-right-panel">
-        <div className="reg-brand">
-          <div className="brand-icon">✦</div>
-          <span className="brand-name">GenAI Studio</span>
-        </div>
+        {/* Brand removed */}
 
         {/* Animated Network Illustration */}
         <div className="reg-illustration">

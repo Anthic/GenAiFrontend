@@ -35,12 +35,6 @@
   --clr-text-accent: #00d4ff;
 }
 
-/* ── Reset ──────────────────────────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
 /* ── Base ───────────────────────────────────────────────────────────────────── */
 html {
@@ -96,8 +90,4 @@ body {
   background-attachment: fixed;
 }
 
-/* Root app container */
-#root {
-  min-height: 100dvh;
-  isolation: isolate;
-}
+

@@ -6,10 +6,14 @@ import { RouterProvider } from "react-router-dom";
 import router from "./Router/router.tsx";
 import { AuthProvider } from "./Features/auth/AuthProviderContext/AuthProvider.tsx";
 
+import { ToastProvider } from "./hooks/useToast.tsx";
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </AuthProvider>
+    <ToastProvider>
+      <AuthProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </AuthProvider>
+    </ToastProvider>
   </StrictMode>,
 );

@@ -261,11 +261,7 @@ export default function Login() {
           LEFT PANEL  — Lottie + Branding
       ══════════════════════════════════════ */}
       <aside className="login-left">
-        {/* Brand */}
-        <div className="login-brand">
-          <div className="brand-icon">✦</div>
-          <span className="brand-name">GenAI Studio</span>
-        </div>
+        {/* Brand removed */}
 
         {/* Animated SVG illustration */}
         <div className="lottie-wrap">
@@ -297,11 +293,7 @@ export default function Login() {
       ══════════════════════════════════════ */}
       <main className="login-right">
         <div className="glass-card">
-          {/* Mobile-only brand */}
-          <div className="mobile-brand">
-            <div className="brand-icon">✦</div>
-            <span className="brand-name">GenAI Studio</span>
-          </div>
+          {/* Mobile-only brand removed */}
 
           {/* Badge */}
           <div className="card-badge">

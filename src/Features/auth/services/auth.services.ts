@@ -15,7 +15,7 @@ export const register = async (
   payload: RegisterRequest,
 ): Promise<ApiResponse<AuthResponse>> => {
   const { data } = await axios.post<ApiResponse<AuthResponse>>(
-    `${BASE_URL}/register`,
+    `${BASE_URL}/auth/register`,
     payload,
     { withCredentials: true },
   );
@@ -26,7 +26,7 @@ export const login = async (
   payload: LoginRequest,
 ): Promise<ApiResponse<AuthResponse>> => {
   const { data } = await axios.post<ApiResponse<AuthResponse>>(
-    `${BASE_URL}/login`,
+    `${BASE_URL}/auth/login`,
     payload,
     { withCredentials: true },
   );
@@ -37,7 +37,7 @@ export const logout = async (
   refreshToken?: string,
 ): Promise<ApiResponse<null>> => {
   const { data } = await axios.post<ApiResponse<null>>(
-    `${BASE_URL}/logout`,
+    `${BASE_URL}/auth/logout`,
     { refreshToken },
     {
       headers: { Authorization: `Bearer ${accessToken}` },
@@ -51,7 +51,7 @@ export const refreshToken = async (
   payload: RefreshTokenRequest,
 ): Promise<ApiResponse<AuthTokens>> => {
   const { data } = await axios.post<ApiResponse<AuthTokens>>(
-    `${BASE_URL}/refresh-token`,
+    `${BASE_URL}/auth/refresh-token`,
     payload,
   );
   return data;
@@ -60,7 +60,7 @@ export const refreshToken = async (
 export const getMe = async (
   accessToken: string,
 ): Promise<ApiResponse<UserProfile>> => {
-  const { data } = await axios.get<ApiResponse<UserProfile>>(`${BASE_URL}/me`, {
+  const { data } = await axios.get<ApiResponse<UserProfile>>(`${BASE_URL}/auth/me`, {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
   return data;
