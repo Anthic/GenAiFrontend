@@ -201,7 +201,7 @@ export default function Home() {
       {/* ────────────────────────────────────────────────────────
                               HERO SECTION 
       ────────────────────────────────────────────────────────── */}
-      <section className="relative z-10 w-11/12 mx-auto pt-24 pb-32 md:pb-40 flex flex-col lg:flex-row items-center justify-between gap-16 min-h-[90vh]">
+      <section className="relative z-10 w-11/12 mx-auto pt-10 pb-10 md:pb-10 flex flex-col lg:flex-row items-center justify-between gap-16 min-h-[90vh]">
         
         {/* Left: Text */}
         <div className="hero-text w-full lg:w-1/2 flex flex-col items-start text-left z-20">
