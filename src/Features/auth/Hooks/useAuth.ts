@@ -46,9 +46,7 @@ export const useAuth = () => {
         throw new Error("Registration failed");
       }
       
-      localStorage.setItem("token", data.data.accessToken);
-      setUser(data.data.user);
-      showToast("Account created successfully. Welcome!", "success");
+      showToast("Account created successfully. Please log in!", "success");
     } catch (error) {
       console.error("Registration error:", error);
       showToast("Registration failed! Check details.", "error");
